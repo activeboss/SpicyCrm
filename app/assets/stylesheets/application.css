@@ -1,0 +1,26 @@
+/**
+ *= require theme/css/spicy-theme
+ */
+.add {
+     background-image: url(/assets/icon/add.png) !important;
+}
+
+.delete {
+     background-image: url(/assets/icon/delete.png) !important;
+}
+
+.user {
+     background-image: url(/assets/icon/user.png) !important;
+}
+
+.database_gear {
+     background-image: url(/assets/icon/database_gear.png) !important;
+}
+
+.user_gray {
+     background-image: url(/assets/icon/user_gray.png) !important;
+}
+
+.picture-icon {
+     background-image: url(/assets/picture-icon.png) !important;
+}
