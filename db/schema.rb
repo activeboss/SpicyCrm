@@ -11,12 +11,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130308212604) do
+ActiveRecord::Schema.define(:version => 20130328094930) do
+
+  create_table "companies", :force => true do |t|
+    t.string   "companyname"
+    t.string   "reg_no"
+    t.string   "tax_id"
+    t.string   "logo_url"
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
+    t.decimal  "reg_capital",                :precision => 15, :scale => 2
+    t.string   "street1",     :limit => 100
+    t.string   "street2",     :limit => 100
+    t.string   "street3",     :limit => 100
+    t.string   "city",        :limit => 100
+    t.string   "zip",         :limit => 10
+    t.string   "country",     :limit => 100
+  end
 
   create_table "departments", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "phones", :force => true do |t|
+    t.string   "phonetype",  :limit => 10
+    t.string   "number",     :limit => 20
+    t.string   "vendor",     :limit => 100
+    t.integer  "owner"
+    t.integer  "created_by"
+    t.integer  "update_by"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
 end

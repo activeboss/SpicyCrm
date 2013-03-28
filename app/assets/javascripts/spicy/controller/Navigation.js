@@ -24,6 +24,9 @@ Ext.define('Spicy.controller.Navigation', {
     onLeftMenuitemClick: function(item, e, options) {
         this.loadMain(item);
     },
+    onHeadButtonClick: function(item, e, options) {
+        this.loadMain(item);
+    },
     //On click add button in tool bar and open form relected to thate view
     onAddToolButtonClick: function(button, e, options) {
         var win = Ext.create('widget.popupwin', {
@@ -54,13 +57,13 @@ Ext.define('Spicy.controller.Navigation', {
     loadMain: function(item) {
         var mainpanel = this.getMainPanel(),
             active = mainpanel.items.first(),
-            navTitle = item.text,
-            navUrl = item.itemId;
+            navTitle = item.module,
+            navUrl = item.navUrl;        
 
         if (!active) {
             mainpanel.add({
                 xtype: navUrl,
-                title: navTitle
+                title: navTitle,
 
             });
         } else {
@@ -97,6 +100,9 @@ Ext.define('Spicy.controller.Navigation', {
         this.control({
             "leftpanel menuitem": {
                 click: this.onLeftMenuitemClick
+            },
+            "head #modulenav button": {
+                click: this.onHeadButtonClick
             },
             "toolbar #add": {
                 click: this.onAddToolbarButtonClick

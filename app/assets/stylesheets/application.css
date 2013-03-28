@@ -1,8 +1,20 @@
 /**
- *= require theme/css/spicy-theme
+ *= require css/ext-all-gray
  */
+.companytable {
+
+}
+.r{
+	text-align:right;
+}
+.textbold{
+	font-weight: bold;
+}
 .add {
      background-image: url(/assets/icon/add.png) !important;
+}
+.edit {
+     background-image: url(/assets/icon/edit.png) !important;
 }
 
 .delete {
@@ -23,4 +35,44 @@
 
 .picture-icon {
      background-image: url(/assets/picture-icon.png) !important;
+}
+
+.folder_user {
+     background-image: url(/assets/icon/folder_user.png) !important;
+}
+
+.companies{
+     background-image: url(/assets/icon/companies.png) !important; border: none; background-color: none;
+}
+.home-icon16{
+     background-image: url(/assets/icon/house.png) !important; border: none; background-color: none;
+}
+.building{
+     background-image: url(/assets/icon/building.png) !important; border: none; background-color: none;
+}
+.hrm{
+     background-image: url(/assets/icon/hrm.png) !important; border: none; background-color: none;
+}
+.datalist {
+     padding-bottom: 5px;
+     height: 18px;
+     
+}
+.cultitle {
+     float: left;
+     width: 120px;
+     text-align: right;
+}
+.culvalue {
+     float: left;
+     padding-left: 10px;
+}
+.btnbox {
+     /*width: 16px;*/
+     float: right;
+     text-align: right;
+     
+}
+.item-hover {
+    background-color: #eee;
 }

@@ -37,6 +37,21 @@ Ext.define('Spicy.view.Head', {
                 },
                 {
                     xtype: 'container',
+                    itemId: 'modulenav',
+                    flex: 1,
+                    padding: 5,
+                    items:[{
+                        xtype: 'button',
+                        tooltip: '<p>HR Management<p>',
+                        cls: 'facebook',
+                        navUrl: 'hr-index',
+                        module: 'HR Management',
+                        // width: 59,
+                        // height: 60,
+                    }]
+                },
+                {
+                    xtype: 'container',
                     flex: 1,
                     html: 'Login By Varit Onvnog | Logout',
                     itemId: 'login',

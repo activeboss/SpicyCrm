@@ -2,7 +2,8 @@ Ext.define('Spicy.view.MainPanel', {
     extend: 'Ext.tab.Panel',
     alias: 'widget.mainpanel',
 
-    plain: true,
+    // plain: true,
+    // border: false,
 
     initComponent: function() {
         var me = this;

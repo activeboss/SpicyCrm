@@ -2,9 +2,9 @@ Ext.define('Spicy.view.user.Index', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.userindex',
 
-    border: 0,
     title: 'Users',
     iconCls: 'user',
+    // border: false,
    // itemId: 'userindex',
    // store: 'UsersStore',
 
@@ -13,7 +13,7 @@ Ext.define('Spicy.view.user.Index', {
 
         Ext.applyIf(me, {
             viewConfig: {
-
+                
             },
             columns: [
                 {
@@ -51,13 +51,11 @@ Ext.define('Spicy.view.user.Index', {
                 {
                     xtype: 'pagingtoolbar',
                     dock: 'bottom',
-                    width: 360,
-                    displayInfo: true
+                    displayInfo: true,
                 },
                 {
                     xtype: 'toolbar',
                     dock: 'top',
-                    border: 0,
                     itemId: 'toptoolbar',
                     items: [
                         {
@@ -65,7 +63,8 @@ Ext.define('Spicy.view.user.Index', {
                             urlForm: 'userform',
                             itemId: 'add',
                             iconCls: 'add',
-                            text: 'Add New User'
+                            text: 'Add New User',
+                            border: false
                         }
                     ]
                 }

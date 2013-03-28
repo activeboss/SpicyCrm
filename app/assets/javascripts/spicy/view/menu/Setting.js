@@ -1,11 +1,8 @@
 Ext.define('Spicy.view.menu.Setting', {
     extend: 'Ext.menu.Menu',
-    alias: 'widget.menusetting',
+    alias: 'widget.menu-setting',
 
     floating: false,
-    width: 120,
-    iconCls: 'database_gear',
-    title: 'Settings',
 
     initComponent: function() {
         var me = this;
@@ -14,18 +11,18 @@ Ext.define('Spicy.view.menu.Setting', {
             items: [
                 {
                     xtype: 'menuitem',
-                    itemId: 'userindex',
+                    navUrl: 'userindex',
                     iconCls: 'user',
                     text: 'Users'
                 },
                 {
                     xtype: 'menuitem',
-                    itemId: 'admin-index',
+                    navUrl: 'admin-index',
                     text: 'Department Setup'
                 },
                 {
                     xtype: 'menuitem',
-                    itemId:'userlist',
+                    navUrl:'userlist',
                     text: 'list Item'
                 }
             ]

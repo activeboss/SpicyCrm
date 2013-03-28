@@ -4,6 +4,8 @@ Ext.define('Spicy.view.admin.Index', {
 
     padding: 10,
     style: 'background-color: #f0f0f0;',
+    border: 1,
+
     initComponent: function() {
         var me = this;
 
@@ -12,7 +14,7 @@ Ext.define('Spicy.view.admin.Index', {
                 {
                     xtype: 'container',
                     height: 50,
-                    html: '<h1>Welcome to your company settup</h1>',
+                    html: 'Welcome to your company settup',
                     itemId: 'sethead'
                 },
                 {

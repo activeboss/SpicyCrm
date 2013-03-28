@@ -4,13 +4,17 @@ Ext.define('Spicy.view.LeftPanel', {
 
     requires: [
         'Spicy.view.menu.Sales',
-        'Spicy.view.menu.Setting'
+        'Spicy.view.menu.Setting',
+        'Spicy.view.menu.Hr'
     ],
 
     maxWidth: 250,
     width: 200,
     layout: {
-        type: 'accordion'
+        type: 'accordion',
+        // titleCollapse: false,
+        animate: true,
+        activeOnTop: true
     },
     title: 'Navigation',
 
@@ -20,10 +24,36 @@ Ext.define('Spicy.view.LeftPanel', {
         Ext.applyIf(me, {
             items: [
                 {
-                    xtype: 'menusetting'
+                    title: 'HR Management',
+                    iconCls: 'folder_user',
+                    items: [{
+                        xtype: 'menu-hr',
+                        border: false,
+                        bodyStyle: 'background:none;'
+
+                    }]
                 },
                 {
-                    xtype: 'menusales'
+                    title: 'Organisazions',
+                    items:[{xtype: 'hr-organization', border: false,}]
+                },
+                {
+                    title: 'SalesForce',
+                    iconCls: 'user_gray',
+                    items: [{
+                        xtype: 'menu-sales',
+                        // border: false,
+                        bodyStyle: 'background:none;'
+                    }]
+                },
+                {
+                    title: 'Settings',
+                    iconCls: 'database_gear',
+                    items: [{
+                        xtype: 'menu-setting',
+                        border: false,
+                        bodyStyle: 'background:none;'
+                    }]
                 }
             ]
         });

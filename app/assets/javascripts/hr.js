@@ -1,0 +1,4 @@
+/**
+
+ *= require hr/controller/Hr
+ */

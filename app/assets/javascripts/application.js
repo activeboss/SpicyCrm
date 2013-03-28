@@ -1,4 +1,5 @@
 /**
- *= require extjs/ext-all
- *= require app
- */
+ *= require extjs/ext-all-dev
+ *= require spicy/app
+ *= require spicy/lib/menusystem
+*/

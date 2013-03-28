@@ -1,12 +1,8 @@
 Ext.define('Spicy.view.menu.Sales', {
     extend: 'Ext.menu.Menu',
-    alias: 'widget.menusales',
+    alias: 'widget.menu-sales',
 
     floating: false,
-    width: 120,
-    iconCls: 'user_gray',
-    title: 'SalesForce',
-    allowOtherMenus: false,
 
     initComponent: function() {
         var me = this;
@@ -15,8 +11,9 @@ Ext.define('Spicy.view.menu.Sales', {
             items: [
                 {
                     xtype: 'menuitem',
-                    itemId: 'userindex',
-                    text: 'Sales'
+                    navUrl: 'userindex',
+                    text: 'Sales',
+                    module: 'Sales'
                 },
                 {
                     xtype: 'menuitem',
