@@ -1,20 +1,21 @@
 Ext.define('Spicy.view.company.Detail', {
     extend: 'Ext.view.View',
     alias: 'widget.companydetail',
+
     moduleForm: 'companyform',
 
     itemSelector: '.companyinfo',
-    overItemCls: 'item-hover',
+    overItemCls: 'items-hover',
 
     initComponent: function() {
         var me = this;
 
         Ext.applyIf(me, {
            itemTpl: [
-                '<div class="companyinfo datalist">',
-                '<div class="cultitle">Company Name  :</div>',
-                '<div class="culvalue textbold">{companyname}</div>',
-                '<div class="comedit btnbox" data-qtip="Edit"><img src="assets/icon/edit_task.png" width="16" height="16"/></div>',
+                '<div class="companyinfo">',
+                '<span class="cultitle">Company Name  :</span>',
+                '<span class="culvalue textbold">{companyname} </span>',
+                '<div class="removeicon edit"></div>',
                 '</div>',
                 '<div class="datalist">',
                 '<div class="cultitle">Registrations Id :</div>',
@@ -33,9 +34,16 @@ Ext.define('Spicy.view.company.Detail', {
 
         me.callParent(arguments);
     },
-    // listeners:{
-    //     itemdblclick:function(view, record, item, index, event, options){//listen to the double click (step three)      
-    //        Ext.Msg.alert('hi', 'jo');       
-    //     }
-    // }
+    listeners:{
+
+        // 'itemmouseenter': function(view, record, item, idx, event, opts) {
+        //     div = Ext.Element.get('ciconbox');
+        //     div.removeCls('x-hidden');
+        //     console.log(item);
+        // },
+        // 'itemmouseleave': function(view, record, item, idx, event, opts) {
+        //     div = Ext.Element.get('ciconbox');
+        //     div.addCls('x-hidden');
+        // }    
+    }
 });

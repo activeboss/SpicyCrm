@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  company_id: 1
+  contact_id: 1
+  created_by: 1
+  update_by: 1
+  shares: MyString
+  in_prosent: MyString
+
+two:
+  company_id: 1
+  contact_id: 1
+  created_by: 1
+  update_by: 1
+  shares: MyString
+  in_prosent: MyString

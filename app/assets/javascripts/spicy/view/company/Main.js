@@ -2,8 +2,6 @@ Ext.define('Spicy.view.company.Main',{
 	extend      : 'Ext.container.Container',
 	alias       : 'widget.companymain',
 
-    requires:['Spicy.store.hr.Companys'],
-
 	layout: {
         align: 'stretch',
         type: 'vbox'
@@ -12,19 +10,11 @@ Ext.define('Spicy.view.company.Main',{
 	initComponent: function() {
         var me = this;
 
-        // var detail = Ext.create('Spicy.store.hr.Companys');
-        //     detail.load();
-
-        // var phone = Ext.create('Spicy.store.hr.PhoneGrids');
-        //     phone.load();  
-
-
     Ext.applyIf(me, {
             items: [ 
                 {
                     xtype: 'panel',
                     bodyPadding: 10,
-                    items: 'ggggg',
                     // flex: 1,
                     border: false,
                     layout: {
@@ -36,7 +26,7 @@ Ext.define('Spicy.view.company.Main',{
                         xtype: 'fieldset',
                     },
                     tbar: ['->', 
-                        { xtype: 'button', text: 'Add Company Phone',action: 'phoneform' },
+                        { xtype: 'button', text: 'Add Phone Number', iconCls: 'add',action: 'phoneform' },
                         { xtype: 'button', text: 'Add Company Share Holders',action: 'addshareholder' }
                     ],
                     items: [
@@ -78,6 +68,7 @@ Ext.define('Spicy.view.company.Main',{
                         {
                             title: 'Company Phone Number',
                             margins: '0 10 0 0',
+                            iconCls: 'add',
                             items: [
                                 {
                                     xtype: 'companyphones',

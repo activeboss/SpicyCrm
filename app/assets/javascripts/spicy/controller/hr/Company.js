@@ -15,10 +15,10 @@ Ext.define('Spicy.controller.hr.Company', {
     ],
 
     refs: [
-        {
-            ref: 'popupWindow',
-            selector: 'popupwindow',
-        },
+        // {
+        //     ref: 'popupWindow',
+        //     selector: 'popupwindow',
+        // },
         {
             ref: 'companyPhone',
             selector: 'companymain companyphones'
@@ -33,23 +33,90 @@ Ext.define('Spicy.controller.hr.Company', {
         }
     ],
 
-    addContent	: function(){
+    addContent	: function() {
 		this.container.add({
 			xtype : 'companymain',
 			itemId: 'companymain'
 		});
 	},
+    onDeletePhone : function() {
+        var record = this.getCompanyPhone().getSelectionModel().getSelection()[0];
+    },
+
+    // handleSpecialKey: function(field, e, options) {
+    //     if(e.getKey() === e.ENTER) {
+    //         this.onAddNewPhone();
+    //     }
+    // },
+
+    onAddNewPhone: function(button){
+        var me = this,
+            win = button.up('window'),
+            form = win.down('form');
+            // values = form.getValues();
+
+        var companyid = me.getHrCompanysStore().last().get('id');
+
+        form.form.setValues({owner: companyid});
+
+        var store = me.getHrPhonesStore(),
+            values = form.getValues(),
+            phone = Ext.create('Spicy.model.hr.Phone', values),
+            errors = phone.validate();     
+
+        if(errors.isValid()){
+            var formRecord = form.getRecord();
+
+            if(formRecord){
+                formRecord.set(values);
+            }else{
+                store.add(phone);
+            }
+
+            store.sync({
+                success: function() {
+                    win.close();
+                }
+            });
+
+        }else{
+            form.getForm().markInvalid(errors);
+            var errors = phone.validate();
+
+            errors.each(function(error){
+                console.log(error.field,error.message);
+            });
+        }
+    },
+
+    deletePhone: function(view, record) {
+        var me = this;
+
+        Ext.Msg.show({
+            title: 'Delete Phone?',
+            msg: 'Are you sure you want to delete this: <br>' + record.get('phonetype') + ': ' + record.get('number') + ' ?',
+            buttons: Ext.Msg.YESNO,
+            fn: function(response) {
+                if(response === 'yes') {
+                    me.getHrPhonesStore().remove(record);
+                    me.getHrPhonesStore().sync();
+                }
+            }
+        });
+    },
 
     onUpdateCompany: function(button) {
 
         var me = this,
-            win = me.getPopupWindow(),
+            win = button.up('window'),//me.getPopupWindow(),
             form = win.down('form'),
             store = me.getHrCompanysStore(),
             values = form.getValues(),
-            formRecord = store.last();
+            formRecord = Ext.create('Spicy.model.hr.Company', values),
+            errors = formRecord.validate();    
 
-        if (form.isValid) {
+        if (errors.isValid) {
+            formRecord = form.getRecord();
             formRecord.set(values);
         } else {
             return;
@@ -58,7 +125,11 @@ Ext.define('Spicy.controller.hr.Company', {
         store.sync();
     },
 
-    onCreateEditPopupWindow: function(view,record) {
+    createEditPopupWindow: function(view, record, item, index, e, eOpts) {
+
+        var phonelist = view.getRecord(view.findTargetByEvent(e));
+
+
         var me = this,
             module = view.moduleForm;
 
@@ -66,7 +137,7 @@ Ext.define('Spicy.controller.hr.Company', {
             titletext = 'Edit : ' + record.get('companyname');
         };
 
-        if(view.xtype == 'companyphones') {
+        if(module == 'phoneform') {
             titletext = 'Edit Company : ' + record.get('phonetype');
         };
         
@@ -78,16 +149,16 @@ Ext.define('Spicy.controller.hr.Company', {
                 }),
             form = win.down('form');
 
-        if(record) {
-            form.loadRecord(record);
+        if(phonelist) {
+            form.loadRecord(phonelist);
             win.show();            
-        } else { 
-            win.show();
+        } else {
+            Ext.Msg.alert('Errors', 'Call Varit!' ); 
         }    
     },
 
-    onCreateAddPopupWindow : function(button) {
-        console.log(button.action);
+    createAddPopupWindow : function(button) {
+        
         var me = this,
             win = Ext.create('widget.popupwindow', {
                     title: button.text,
@@ -102,41 +173,70 @@ Ext.define('Spicy.controller.hr.Company', {
 
     onCompanyLoads: function(store, records) {
         var me = this,
-            store = me.getHrCompanysStore();
+            store = me.getHrCompanysStore(),
+            phonestore = me.getHrPhonesStore();
+
+        var companyid = store.last().get('id');
+
+        phonestore.filter({property: 'owner', value: companyid, exactMatch: true })
 
         me.getCompanydetail().bindStore(store);
         me.getCompanyadress().bindStore(store);
 
-        // this.getCompanyPhone().bindStore(this.getHrPhonesStore());
-        this.getCompanyPhone().bindStore(me.getHrPhoneGridsStore());
+        me.getCompanyPhone().bindStore(phonestore);
+        // this.getCompanyPhone().bindStore(me.getHrPhoneGridsStore());
+    },
+    showActions: function(view, task, node, rowIndex, e) {
+        var div = Ext.Element.get('iconbox');
+            div.removeCls('x-hidden');
+    },
+
+    hideActions: function(view, task, node, rowIndex, e) {
+        var div = Ext.Element.get('iconbox');
+            div.addCls('x-hidden');
+        // var icons = Ext.DomQuery.select('.x-action-col-icon', node);
+        // Ext.each(icons, function(icon){
+        //     Ext.get(icon).addCls('x-hidden');
+        // });
     },
     
     init: function() {
         var me = this;
 
-        // me.onCompanyLoads();
         me.getHrCompanysStore().on({
             scope: me,
             load : me.onCompanyLoads
         });
-        // this.getCompanydetail().bindStore(this.getHrCompanysStore());
 
         me.control({
             'companymain' : {
                 beforerender : me.onCompanyLoads
             },
             'companymain toolbar button[action=phoneform]' : {
-                click : me.onCreateAddPopupWindow
+                click : me.createAddPopupWindow
             },
             'companydetail' : {
-                itemclick : me.onCreateEditPopupWindow
+                itemclick : me.createEditPopupWindow
+                // itemmouseenter: this.showActions,
+                // itemmouseleave: this.hideActions,
             },
             'companyphones' : {
-                itemclick : me.onCreateEditPopupWindow
+                // itemclick : me.createEditPopupWindow,
+                editclick : me.createEditPopupWindow,
+                deleteclick : me.deletePhone
+                // itemmouseenter: this.showActions,
+                // itemmouseleave: this.hideActions,
             },
             '#companyform button[action=save]' : {
                 click : me.onUpdateCompany
-            }
+            },
+            '#phoneform button[action=save]' : {
+                click : me.onAddNewPhone
+            },
+            // 'popupwindow form textfield' : {
+            //     specialkey: me.handleSpecialKey
+            // }
+            
         });
     }
 });

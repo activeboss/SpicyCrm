@@ -2,6 +2,7 @@ Ext.define('Spicy.store.hr.PhoneGrids', {
 	extend: 'Ext.data.Store',
 
 	model: 'Spicy.model.hr.PhoneGrid',
+	groupField: 'phonetype',
 	autoLoad: true,
 	pageSize: 8,
 

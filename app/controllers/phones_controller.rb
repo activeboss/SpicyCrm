@@ -10,6 +10,10 @@ class PhonesController < ApplicationController
     end
   end
 
+  # def addphone
+  #   console.log('this');
+
+  # end  
   # GET /phones/1
   # GET /phones/1.json
   def show
@@ -41,11 +45,11 @@ class PhonesController < ApplicationController
   # POST /phones.json
   def create
     @phone = Phone.new(params[:phone])
-
+  
     respond_to do |format|
       if @phone.save
-        format.html { redirect_to @phone, notice: 'Phone was successfully created.' }
-        format.json { render json: @phone, status: :created, location: @phone }
+        # format.html { redirect_to @phone, notice: 'Phone was successfully created.' }
+        format.json { render json: {"success" => true, "msg" => "User added successfully"}}
       else
         format.html { render action: "new" }
         format.json { render json: @phone.errors, status: :unprocessable_entity }
@@ -60,8 +64,8 @@ class PhonesController < ApplicationController
 
     respond_to do |format|
       if @phone.update_attributes(params[:phone])
-        format.html { redirect_to @phone, notice: 'Phone was successfully updated.' }
-        format.json { head :no_content }
+        # format.html { redirect_to @phone, notice: 'Phone was successfully updated.' }
+        format.json { render json: {"success" => true, "msg" => "update successfully"} }
       else
         format.html { render action: "edit" }
         format.json { render json: @phone.errors, status: :unprocessable_entity }

@@ -1,7 +1,7 @@
 class CreatePhones < ActiveRecord::Migration
   def change
     create_table :phones do |t|
-      t.string :type, :limit => 10
+      t.string :type, :limit => 50
       t.string :number, :limit => 20
       t.string :vendor, :limit => 100 
       t.integer :owner

@@ -14,7 +14,7 @@
      background-image: url(/assets/icon/add.png) !important;
 }
 .edit {
-     background-image: url(/assets/icon/edit.png) !important;
+     background-image: url(/assets/icon/edit_task.png) !important; border: none;
 }
 
 .delete {
@@ -53,7 +53,7 @@
 .hrm{
      background-image: url(/assets/icon/hrm.png) !important; border: none; background-color: none;
 }
-.datalist {
+.datalist, .companyinfo {
      padding-bottom: 5px;
      height: 18px;
      
@@ -66,6 +66,7 @@
 .culvalue {
      float: left;
      padding-left: 10px;
+
 }
 .btnbox {
      /*width: 16px;*/
@@ -73,6 +74,34 @@
      text-align: right;
      
 }
-.item-hover {
+
+.phonelist{
+     /*padding: '5 0 5 0';
+     border-bottom: 1px solid lightgray;*/
+     /*position: relative;*/
+}
+.phonelist div.removeicon, .companyinfo div.removeicon{
+     width: 16px;
+    height: 16px;
+    /*position: absolute;*/
+    float: right;
+    /*top: 10px;*/
+    /*right: 10px;*/
+    display: none;
+    cursor: pointer;
+}
+
+.phonelist.phonelist-hover div.removeicon {
+     display: block;
+     /*background-color: #eee;*/
+}
+.items-hover {
     background-color: #eee;
+    /*display: block;*/
+    /*display: block !important;*/
+   /* background-image: url(/assets/icon/edit_task.png) !important; border: none;
+    background-repeat: no-repeat;
+    background-position: 100%;
+*/}
+    
 }

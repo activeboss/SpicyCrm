@@ -8,5 +8,5 @@ Ext.define('Spicy.model.hr.PhoneGrid', {
 		'owner',
 	],
 	idProperty: 'id',
-	// belongsTo: { model: 'Spicy.model.hr.Company', name: 'companys'}		
+	belongsTo: { model: 'Spicy.model.hr.Company', name: 'companys'}		
 });

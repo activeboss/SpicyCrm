@@ -13,25 +13,7 @@ Ext.define('Spicy.model.hr.Company', {
 		{ name: 'city', type: 'auto' },
 		{ name: 'zip', type: 'auto' },
 		{ name: 'country', type: 'auto' }
-	],
-	hasMany: {model: 'Spicy.model.hr.Phone', name: 'getPhones'},
-
-	// idProperty: 'id',
-	// proxy: {
-	// 	type : 'rest',
-	// 	url: '/companies',
-	// 	format: 'json',
-		
-	// 	reader	: {
-	// 		type	: 'json',
-	// 		root	: 'companies',
-	// 		// record  : 'phones',
-	// 		// record: 'companies',
-	// 		successProperty: 'success',
-	// 		messageProperty: 'errors'
-	// 	},
-	// 	writer : {
-			
-	// 	}
-	// }	
+	]
+	// hasMany: {model: 'Spicy.model.hr.Phone', name: 'getPhones'},
+	
 });

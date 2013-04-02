@@ -26,6 +26,7 @@ Ext.define('Spicy.view.phone.PhoneForm', {
 
     Ext.applyIf(me, {
             items: [
+                // { xtype: 'hidden', fieldLabel: 'id', name: 'id' },
                 {  
                 	xtype: 'combobox',
 		            fieldLabel: 'Choose Phone Type',
@@ -33,12 +34,15 @@ Ext.define('Spicy.view.phone.PhoneForm', {
 		            store: phonetype,
 		            valueField: 'type',
 		            displayField: 'type',
-		            typeAhead: true,
+		            typeAhead: false,
+                    forceSelection : true,
 		            queryMode: 'local',
+                    validateOnChange: true,
 		            emptyText: 'Select a phone type...'
         		},
         		{ fieldLabel: 'Phone Number', name: 'number' },
-                { xtype: 'hidden', name: 'owner' }
+                { xtype: 'hidden', fieldLabel: 'owner', name: 'owner' }
+                // { xtype: 'hidden', fieldLabel: 'id', name: 'id' }
             ]
         });
 

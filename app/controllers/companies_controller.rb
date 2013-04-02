@@ -43,16 +43,8 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     @company = Company.new(params[:company])
+    @company.save
 
-    respond_to do |format|
-      if @company.save
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
-        format.json { render json: {"success" => true, "msg" => "User added successfully"}}
-      else
-        format.html { render action: "new" }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PUT /companies/1

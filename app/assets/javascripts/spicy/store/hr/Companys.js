@@ -8,11 +8,11 @@ Ext.define('Spicy.store.hr.Companys', {
 			autoLoad: true,
 			// autoSync: true,
 			model: 'Spicy.model.hr.Company',
-			storeId: 'CompanysS',
+			storeId: 'companyMainStore',
 
 			proxy: {
-				type: 'ajax',
-				url: '/companies.json',
+				type: 'rest',
+				url: '/companies',
 				format: 'json',
 				reader: {
 					type: 'json',
